@@ -1,0 +1,113 @@
+#!/bin/bash
+
+function die {
+    echo -e "\033[31m$(basename $0): ${1:-"Unknown Error"}\033[0m" 1>&2
+    exit 1
+}
+
+function echoerror {
+    echo -e "\033[31m${1}\033[0m"
+}
+
+function echosuccess {
+    echo -e "\033[32m${1}\033[0m"
+}
+
+function confirm {
+	echo -n "$@ "
+	read -e answer
+	for response in y; do
+		if [ "_$answer" == "_$response" ]; then
+			return 0
+		fi
+	done
+	return 1
+}
+
+function getuncommittedfilesnum {
+	expr $(git status --porcelain 2>/dev/null| egrep "^(M| M)" | wc -l)
+}
+
+ROOT_PATH=$1
+PRG_NAME=$2
+REPO_PATH=$3
+
+echosuccess ">>> merging branches for $PRG_NAME"
+
+if [ ! -d "$REPO_PATH" ]; then
+	die "$PRG_NAME: repo directory not found"
+fi
+
+cd $REPO_PATH
+
+git ls-remote . &> /dev/null
+
+if [ $? -ne 0 ]; then
+	die "$PRG_NAME: there is no git repository in the $REPO_PATH directory"
+fi
+
+LOOP_ERROR=0
+while read -r branch; do
+	if [ "$branch" == "master" ]; then
+		:
+	elif [ -n "$(echo "$branch" | grep -P '^\d\d-.*' -o)" ]; then
+		BRANCH_NAMES=("${BRANCH_NAMES[@]}" "$branch")
+	else
+		echoerror "$PRG_NAME: invalid branch name format - $branch. Valid format nn-... (n - number)"
+		LOOP_ERROR=1
+		break
+	fi
+done < <(git for-each-ref --format='%(refname)' 'refs/heads' | sed 's%refs/heads/%%g')
+
+if [ $LOOP_ERROR -eq 1 ]; then
+	exit 1
+fi
+
+if [ "${#BRANCH_NAMES[@]}" == 0 ]; then
+	die "$PRG_NAME: there are no valid branches in the repository"
+fi
+
+if [ "$(getuncommittedfilesnum)" -gt 0 ]; then
+	die "$PRG_NAME: there are uncommitted files; commit or discard changes first"
+fi
+
+# Merge functionality
+
+git checkout master > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+	die "$PRG_NAME: cannot checkout to master branch"
+fi
+
+PREV_BRANCH=master
+
+LOOP_ERROR=0
+for CURR_BRANCH in "${BRANCH_NAMES[@]}"; do
+	echo "$PRG_NAME: >>> merging: $PREV_BRANCH -> $CURR_BRANCH"
+
+	git checkout $CURR_BRANCH > /dev/null 2>&1
+
+	if [ $? -ne 0 ]; then
+		echoerror "$PRG_NAME: cannot checkout to $CURR_BRANCH branch"
+		LOOP_ERROR=1
+		break
+	fi
+
+	git merge --no-edit $PREV_BRANCH > /dev/null 2>&1
+
+	if [ $? -ne 0 ]; then
+		echoerror "$PRG_NAME: cannot merge with $PREV_BRANCH branch"
+		LOOP_ERROR=1
+		break
+	fi
+
+	PREV_BRANCH=$CURR_BRANCH
+done
+
+if [ $LOOP_ERROR -eq 1 ]; then
+	exit 1
+fi
+
+echo "$PRG_NAME: merge completed successfully"
+
+exit 0

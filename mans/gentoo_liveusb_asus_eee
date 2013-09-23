@@ -1,0 +1,19 @@
+fdisk /dev/sda                                                             # partition the usbdrive
+      d                                                                    # delete partitions
+      np1[start][finish]                                                   # create new primary partition
+      a1                                                                   # make partition bootable
+      w                                                                    # write table
+mke2fs /dev/sda1                                                           # make ext2 filesystem
+tune2fs -c 0 /dev/sda1                                                     # prevent filesystem checks
+tune2fs -i 0 /dev/sda1                                                     # prevent filesystem checks
+dd if=/usr/lib/syslinux/mbr.bin of=/dev/sda                                # install masterboot record
+mkdir -p /mnt/cdrom                                                        # create cdrom mount point
+mount -o loop,ro -t iso9660 install-x86-minimal-2007.0-r1.iso /mnt/cdrom   # mount iso image
+mkdir -p /mnt/usb                                                          # create usbdrive mount point
+mount /dev/sda1 /mnt/usb                                                   # mount usbdrive
+cp -r /mnt/cdrom/* /mnt/usb                                                # copy iso image to usbdrive
+mv /mnt/usb/isolinux/isolinux.cfg /mnt/usb/isolinux/extlinux.conf          # rename isolinux.cfg to extlinux.conf
+umount /mnt/cdrom                                                          # unmount iso image
+nano /mnt/usb/isolinux/extlinux.conf                                       # add slowusb after cdroot (if necessary)
+extlinux -i /mnt/usb/isolinux                                              # install bootloader
+umount /dev/sda1                                                           # unmount usbdrive 

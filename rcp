@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Reinstall custom programs
+
+function die {
+    echo -e "\033[31m$(basename $0): ${1:-"Unknown Error"}\033[0m" 1>&2
+    exit 1
+}
+
+function checkresult {
+	if [ $? -ne 0 ]; then
+		echo -e "\033[31m$(basename $0): REBUILDING FAILED!\033[0m" 1>&2
+		exit 1
+   	fi
+}
+
+REPOS_PATH="/home/plux/Dropbox/Repositories"
+ENV_PATH="$REPOS_PATH/environment-plux"
+SCRIPTS="$ENV_PATH/scripts/static/build"
+PRG_PATH="$ENV_PATH/programs"
+
+# >>> dwm
+
+cd $ENV_PATH
+
+REPO_PATH="$REPOS_PATH/dwm-6.0-plux"
+
+$SCRIPTS/mergebranches "$PRG_PATH" "dwm-6.0" "$REPO_PATH"
+checkresult
+
+$SCRIPTS/genpatches "$PRG_PATH" "dwm-6.0" "$REPO_PATH"
+checkresult
+
+$SCRIPTS/genpackage "$PRG_PATH" "dwm-6.0"
+checkresult
+
+# >>> dmenu
+
+cd $ENV_PATH
+
+REPO_PATH="$REPOS_PATH/dmenu-4.5-plux"
+
+$SCRIPTS/mergebranches "$PRG_PATH" "dmenu-4.5" "$REPO_PATH"
+checkresult
+
+$SCRIPTS/genpatches "$PRG_PATH" "dmenu-4.5" "$REPO_PATH"
+checkresult
+
+$SCRIPTS/genpackage "$PRG_PATH" "dmenu-4.5"
+checkresult
+
+# >>> st
+
+cd $ENV_PATH
+
+REPO_PATH="$REPOS_PATH/st-0.4.1-plux"
+
+$SCRIPTS/mergebranches "$PRG_PATH" "st-0.4.1" "$REPO_PATH"
+checkresult
+
+$SCRIPTS/genpatches "$PRG_PATH" "st-0.4.1" "$REPO_PATH"
+checkresult
+
+$SCRIPTS/genpackage "$PRG_PATH" "st-0.4.1"
+checkresult
+
+exit 0

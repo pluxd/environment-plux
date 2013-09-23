@@ -1,0 +1,92 @@
+#!/bin/bash
+
+function die {
+    echo -e "\033[31m$(basename $0): ${1:-"Unknown Error"}\033[0m" 1>&2
+    exit 1
+}
+
+function checkresult {
+	if [ $? -ne 0 ]; then
+		echo -e "\033[31m$(basename $0): failed!\033[0m" 1>&2
+		exit 1
+   	fi
+}
+
+function echoerror {
+    echo -e "\033[31m${1}\033[0m"
+}
+
+function echosuccess {
+    echo -e "\033[32m${1}\033[0m"
+}
+
+function confirm {
+	echo -n "$@ "
+	read -e answer
+	for response in y; do
+		if [ "_$answer" == "_$response" ]; then
+			return 0
+		fi
+	done
+	return 1
+}
+
+ROOT_PATH=$1
+PRG_NAME=$2
+
+TMP_BUILD_PATH="$ROOT_PATH/$PRG_NAME/build"
+SOURCE_PATH="$ROOT_PATH/$PRG_NAME/source"
+PATCHES_PATH="$ROOT_PATH/$PRG_NAME/patches"
+PACKAGES_PATH="$ROOT_PATH/$PRG_NAME/packages"
+
+echosuccess ">>> generating package for $PRG_NAME"
+
+if [ -d "$TMP_BUILD_PATH" ]; then
+	rm -r $TMP_BUILD_PATH
+fi
+
+mkdir $TMP_BUILD_PATH
+cd $TMP_BUILD_PATH
+
+cp -R $SOURCE_PATH .
+checkresult
+
+mv "source" $PRG_NAME
+cd $PRG_NAME
+
+dh_make --single --createorig -y
+checkresult
+
+echo "override_dh_usrlocal:" >> "$TMP_BUILD_PATH/$PRG_NAME/debian/rules"
+
+cd debian
+
+quilt --quiltrc=${HOME}/.quiltrc-dpkg import $PATCHES_PATH/*.patch
+checkresult
+
+quilt --quiltrc=${HOME}/.quiltrc-dpkg push -a
+checkresult
+
+cd ..
+
+dpkg-buildpackage -us -uc
+checkresult
+
+if [ "$(find $PACKAGES_PATH -name '*.deb')" != '' ]; then
+	echo "$PRG_NAME: removing old packages"
+
+	rm `find $PACKAGES_PATH -name '*.deb'`
+
+	if [ $? -ne 0 ]; then
+		die "$PRG_NAME: cannot remove old packages"
+	fi
+fi
+
+cp $TMP_BUILD_PATH/*.deb $PACKAGES_PATH
+checkresult
+
+rm -r $TMP_BUILD_PATH
+
+echo "$PRG_NAME: package generation completed successfully"
+
+exit 0

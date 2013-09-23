@@ -1,0 +1,24 @@
+style "plux-window"
+{
+    bg[NORMAL] = "#202020" 
+    XfceNotifyWindow::border-color = "#999999"
+    XfceNotifyWindow::border-radius = 0.0
+    XfceNotifyWindow::border-width = 2.0
+}
+class "XfceNotifyWindow" style "plux-window"
+
+style "plux-button"
+{
+    bg[NORMAL] = "#202020"
+    bg[PRELIGHT] = "#404040"
+    fg[NORMAL] = "#ffffff"
+    fg[PRELIGHT] = "#ffffff"
+}
+widget_class "XfceNotifyWindow.*.GtkButton*" style "plux-button"
+
+style "plux-text"
+{
+    fg[NORMAL] = "#cccccc"
+    GtkWidget::link-color = "#a7a7a7"
+}
+widget_class "XfceNotifyWindow.*.<GtkLabel>" style "plux-text"

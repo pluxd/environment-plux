@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# external params file contains:
+# 	$SERVER - VPN server name
+#	$USERNAME - VPN user
+#	$WORKSTATION_IP - remote station ip to route to
+source vpnparams
+
+echo -n "VPN password: "
+read -s PASSWORD
+echo
+
+REMOTE_IP=$(exec /usr/sbin/pppd \
+pty "pptp $SERVER --nolaunchpppd" \
+name $USERNAME \
+password $PASSWORD \
+require-mppe-128 \
+lock \
+noauth \
+refuse-pap \
+refuse-eap \
+refuse-chap \
+refuse-mschap \
+nobsdcomp \
+nodeflate \
+updetach \
+| grep "remote\s\+IP\s\+address" | sed "s/remote\s\+IP\s\+address\s\+//g")
+
+if [ -z "$REMOTE_IP" ]; then
+	echo "cannot define remote peer IP"
+	exit 1
+fi
+
+echo "remote peer IP: $REMOTE_IP"
+
+exec /bin/route add -host $WORKSTATION_IP gw $REMOTE_IP

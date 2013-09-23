@@ -1,0 +1,48 @@
+#!/bin/bash
+
+function die {
+	echo -e "\033[31m$(basename $0): ${1:-"Unknown Error"}\033[0m" 1>&2
+	exit 1
+}
+
+CURR_DIR=$(pwd)
+PATHLIST_FILE=_pathlist
+
+if [ $(find $CURR_DIR -type f -name $PATHLIST_FILE | grep -c '.') -eq 0 ]; then
+	die "$PATHLIST_FILE files not found"
+fi
+
+ISERROR=0
+while read -r STOREPATH; do
+	if [ $(grep -e "^\s*$" -vc $STOREPATH/_pathlist) -eq 0 ]; then
+		echo "there is nothing to import - $STOREPATH"
+		continue
+	fi
+
+	ENVSECTION=$(echo $STOREPATH | sed 's/.*\///')
+	while read -r ENVPATH; do
+		echo -n "$ENVSECTION: importing '$ENVPATH' ... " 
+
+		if [ -f $STOREPATH/$(basename "$ENVPATH") ]; then
+			EXISTS=1
+		else
+			EXISTS=0
+		fi
+
+		cp $ENVPATH $STOREPATH
+
+		RESULT=$?
+		if [ $RESULT -eq 0 -a $EXISTS -eq 1 ]; then
+			echo "updated"
+		elif [ $RESULT -eq 0 -a $EXISTS -eq 0 ]; then
+			echo "imported"
+		else
+			ISERROR=1
+			echo -e "\033[31merror\033[0m"
+		fi
+	done < <(grep -e "^\s*$" -v $STOREPATH/_pathlist)
+done < <(find $CURR_DIR -type f -name $PATHLIST_FILE | sed 's,/*[^/]\+/*$,,')
+
+if [ $ISERROR -eq 1 ]; then
+	die "Import finished with errors"
+fi

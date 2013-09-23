@@ -1,0 +1,54 @@
+diff --git a/config.def.h b/config.def.h
+index d1c20bd..65dee5b 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char font[] = "Liberation Mono:pixelsize=12:antialias=false:autohint=false";
++static char font[] = "-xos4-terminus-medium-r-normal--12-120-72-72-c-60-iso8859-1";
+ static int borderpx = 2;
+ static char shell[] = "/bin/sh";
+ 
+@@ -29,24 +29,24 @@ static unsigned int tabspaces = 8;
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
+ 	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
++	"#202020",
++	"#cc0000",
++	"#4e9a06",
++	"#c4a000",
++	"#3465a4",
++	"#75507b",
++	"#06989a",
++	"#bbbbbb",
+ 
+ 	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
++	"#555753",
++	"#ef2929",
++	"#8ae234",
++	"#fce94f",
++	"#729fcf",
++	"#ad7fa8",
++	"#34e2e2",
++	"#eeeeec",
+ 
+ 	[255] = 0,
+ 

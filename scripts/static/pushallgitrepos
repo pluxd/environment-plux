@@ -1,0 +1,52 @@
+#!/bin/bash
+
+function die {
+    echo -e "\033[31m$(basename $0): ${1:-"Unknown Error"}\033[0m" 1>&2
+    exit 1
+}
+
+function echoerror {
+    echo -e "\033[31m${1}\033[0m"
+}
+
+function echosuccess {
+    echo -e "\033[32m${1}\033[0m"
+}
+
+function getuncommittedfilesnum {
+	expr $(git status --porcelain 2>/dev/null| egrep "^(M| M)" | wc -l)
+}
+
+REPOS_PATH=/home/plux/Dropbox/Repositories
+
+if [ ! -d "$REPOS_PATH" ]; then
+	die "repos directory not found"
+fi
+
+while read -r REPO_DIR; do
+	REPO_NAME=$(echo $REPO_DIR | sed 's/.*\///')
+
+	echosuccess ">>> pushing '$REPO_NAME' repo"
+
+	cd $REPO_DIR
+
+	git ls-remote . &> /dev/null
+
+	if [ $? -ne 0 ]; then
+		echoerror "$REPO_NAME: there is no git repository in the $REPO_DIR directory"
+		continue
+	fi
+
+	if [ "$(getuncommittedfilesnum)" -gt 0 ]; then
+		echoerror "$REPO_NAME: there are uncommitted files; commit or discard changes first"
+		continue
+	fi
+
+	git push --all
+
+	if [ $? -ne 0 ]; then
+		echoerror "$REPO_NAME: cannot push repo"
+		continue
+	fi
+
+done < <(ls -d $REPOS_PATH/*)
