@@ -114,3 +114,4 @@ complete -cf sudo
 alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
 alias r="cd /home/plux/Dropbox/Repositories"
 alias pagr="/home/plux/Dropbox/Repositories/environment-plux/scripts/static/pushallgitrepos"
+alias i="/home/plux/Dropbox/Repositories/environment-plux/scripts/static/.info"

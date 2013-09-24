@@ -1,3 +1,13 @@
+#!/bin/sh
+
 setxkbmap -layout us,ru -variant -option grp:alt_shift_toggle
 feh --bg-fill /home/plux/Dropbox/Repositories/environment-plux/files/wallpapers/warbot.jpg
-exec dwm
+
+conky | while read LINE; do xsetroot -name "$LINE"; done & 
+
+while true; do
+    # Log stderror to a file 
+    dwm 2> ~/.dwm.log
+    # No error logging
+    #dwm >/dev/null 2>&1
+done

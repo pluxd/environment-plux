@@ -1,1 +1,7 @@
 Xcursor.theme: Vanilla-DMZ
+
+URxvt*scrollBar: false
+URxvt*background: #000000
+URxvt*foreground: #bbbbbb
+URxvt*transparent: true
+URxvt*shading: 15
