@@ -1,0 +1,3 @@
+event=button[ /]power
+action=/etc/acpi/custom_hibernate.sh
+#powerbtn-acpi-support.sh

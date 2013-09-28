@@ -4,3 +4,6 @@
 /home/plux/.conkyrc
 /home/plux/.scripts/conky/battery.sh
 /home/plux/.scripts/conky/date.sh
+/etc/default/acpi-support
+/etc/acpi/events/powerbtn-acpi-support
+/etc/acpi/custom_hibernate.sh
