@@ -1,0 +1,8 @@
+out_to_console yes
+background no
+update_interval 2
+total_run_times 0
+use_spacer none
+
+TEXT
+${execpi 5 '/home/plux/.scripts/conky/battery.sh'}  ${execp '/home/plux/.scripts/conky/date.sh'}
