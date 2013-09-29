@@ -1,0 +1,14 @@
+#!/bin/bash
+USERNAME=plux
+export DISPLAY=":0"
+
+case $1 in
+	hibernate|suspend)
+		su $USERNAME -c "/usr/local/bin/slock" &
+	;;
+	thaw|resume)
+		echo 5 > /sys/class/backlight/acpi_video0/brightness
+	;;
+ 	*) exit $NA
+	;;
+esac
