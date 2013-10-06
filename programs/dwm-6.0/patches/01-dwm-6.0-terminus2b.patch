@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index bd6be33..d201169 100644
+index 4cc8eb0..a0551eb 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -3,7 +3,7 @@
@@ -15,12 +15,12 @@ index bd6be33..d201169 100644
  static const Bool viewontag         = True;     /* Switch view on tag switch */
  
  /* tagging */
--static const char *tags[] = { "trm", "web", "ed", "a", "b", "c" };
-+static const char *tags[] = { "trm", "web", "ed", "\u03b1", "\u03b2", "\u03b3" };
+-static const char *tags[] = { "trm", "web", "ed", "rdp", "a", "b", "c", "d", "e" };
++static const char *tags[] = { "trm", "web", "ed", "rdp", "\u03b1", "\u03b2", "\u03b3", "\u03be", "\u03c9" };
  
  static const Rule rules[] = {
  	/* class			instance    	title	tags mask	isfloating	monitor */
-@@ -33,7 +33,7 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
+@@ -35,7 +35,7 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
  
  static const Layout layouts[] = {
  	/* symbol     arrange function */
@@ -29,24 +29,6 @@ index bd6be33..d201169 100644
  	{ "~",      NULL },    /* no layout function means floating behavior */
  	{ "|",      monocle },
  };
-@@ -52,14 +52,14 @@ static const Layout layouts[] = {
- /* commands */
- static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
- static const char *termcmd[]  = { "st", NULL };
--static const char *browsercmd[] = { "surf", NULL };
-+static const char *browsercmd[] = { "firefox", NULL };
- static const char *editorcmd[] = { "gvim", NULL };
- static const char *fileexplorercmd[] = { "st", "-t", "vifm", "-e", "vifm",  NULL };
- 
- static Key keys[] = {
- 	/* modifier                     key        function        argument */
--	{ 0,                       XF86XK_AudioRaiseVolume,      spawn,          SHCMD("$HOME/.dwm/scripts/volinc.sh") },
--	{ 0,                       XF86XK_AudioLowerVolume,      spawn,          SHCMD("$HOME/.dwm/scripts/voldec.sh") },
-+//	{ 0,                       XF86XK_AudioRaiseVolume,      spawn,          SHCMD("$HOME/.dwm/scripts/volinc.sh") },
-+//	{ 0,                       XF86XK_AudioLowerVolume,      spawn,          SHCMD("$HOME/.dwm/scripts/voldec.sh") },
- 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browsercmd } },
- 	{ MODKEY|ShiftMask,             XK_v,      spawn,          {.v = editorcmd } },
- 	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = fileexplorercmd } },
 diff --git a/dwm.c b/dwm.c
 index 65208a0..c1fbb93 100644
 --- a/dwm.c

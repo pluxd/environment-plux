@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index d201169..d66220d 100644
+index a0551eb..2f5ef41 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -3,13 +3,17 @@
@@ -22,11 +22,11 @@ index d201169..d66220d 100644
 -static const char normfgcolor[]     = "#999999";
 -static const char selbordercolor[]  = "#202020";
 -static const char selbgcolor[]      = "#202020";
--static const char selfgcolor[]      = "#729fcf";
+-static const char selfgcolor[]      = "#eeeeec";
  static const unsigned int borderpx  = 0;        /* border pixel of windows */
  static const unsigned int snap      = 32;       /* snap pixel */
  static const Bool showbar           = True;     /* False means no bar */
-@@ -50,7 +54,7 @@ static const Layout layouts[] = {
+@@ -52,7 +56,7 @@ static const Layout layouts[] = {
  #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
  
  /* commands */
@@ -34,7 +34,7 @@ index d201169..d66220d 100644
 +static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG],"-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
  static const char *termcmd[]  = { "st", NULL };
  static const char *browsercmd[] = { "firefox", NULL };
- static const char *editorcmd[] = { "gvim", NULL };
+ static const char *vimcmd[] = { "gvim", NULL };
 diff --git a/dwm.c b/dwm.c
 index c1fbb93..fd827ef 100644
 --- a/dwm.c
