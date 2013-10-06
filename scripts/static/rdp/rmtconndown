@@ -1,0 +1,15 @@
+#!/bin/bash
+
+/usr/bin/killall xfreerdp > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+	echo "error: cannot kill freerdp"
+fi
+
+/usr/bin/killall pppd > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+	echo "error: cannot kill pppd"
+fi
+
+exit 0

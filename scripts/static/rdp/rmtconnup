@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# external params file contains:
+# 	$VPN_SERVER - VPN server name
+#	$WORKSTATION_IP - remote station ip to route to
+#	$USERNAME - VPN user
+#	$WIDTH - freerdp window width
+#	$HEIGHT - freerdp window height
+
+function die {
+    echo -e "error: ${1:-"unknown Error"}" 1>&2
+    exit 1
+}
+
+WORK_DIR=$1
+PWD=$2
+
+if [ -z "$1" ]; then
+	die "there is no working dir provided"
+fi
+
+if [ -z "$2" ]; then
+	die "there is no password provided"
+fi
+
+if [ "$(ip route show | grep -c 'ppp0')" -gt 0 ]; then
+	die "connection already exists!"
+fi
+
+source $WORK_DIR/rdpparams
+
+/usr/sbin/pppd \
+pty "pptp $VPN_SERVER --nolaunchpppd" \
+name $USERNAME \
+password $PWD \
+require-mppe-128 \
+lock \
+noauth \
+refuse-pap \
+refuse-eap \
+refuse-chap \
+refuse-mschap \
+nobsdcomp \
+nodeflate \
+unit 0 \
+updetach 2>&1
+
+if [ $? -ne 0 ]; then
+	die "cannot establish connection"
+fi
+
+GATEWAY_IP=$(ip route show | grep 'ppp0' | sed 's/.*\(^[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\).*/\1/')
+
+if [ -z "$GATEWAY_IP" ]; then
+	die "cannot get gateway IP"
+fi
+
+echo "gateway IP: $GATEWAY_IP"
+
+ip route add $WORKSTATION_IP via $GATEWAY_IP
+
+if [ $? -ne 0 ]; then
+	die "cannot add route to workstation"
+fi
+
+xfreerdp -u $USERNAME -p $PWD -g ${WIDTH}x$HEIGHT -T "$TITLE" --ignore-certificate $WORKSTATION_IP
+
+if [ $? -ne 0 ]; then
+	die "cannot run freerdp app"
+fi
+
+exit 0

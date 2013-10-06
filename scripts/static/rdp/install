@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cp /home/plux/Dropbox/Repositories/environment-plux/scripts/static/rdp/rcu /usr/bin/
+cp /home/plux/Dropbox/Repositories/environment-plux/scripts/static/rdp/rcd /usr/bin/
+cp /home/plux/Dropbox/Repositories/environment-plux/scripts/static/rdp/rdpparams /usr/bin/
+cp /home/plux/Dropbox/Repositories/environment-plux/scripts/static/rdp/rmtconnup /usr/bin/
+cp /home/plux/Dropbox/Repositories/environment-plux/scripts/static/rdp/rmtconndown /usr/bin/

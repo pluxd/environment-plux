@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function die {
+    echo -e "$(basename $0): ${1:-"Unknown Error"}" 2>&1
+    exit 1
+}
+
+PWD=$1
+WORK_DIR=/usr/bin
+
+if [ -z "$1" ]; then
+	die "There is no password provided"
+fi
+
+/usr/bin/sudo $WORK_DIR/rmtconnup $WORK_DIR $PWD
