@@ -8,3 +8,4 @@
 /etc/acpi/events/powerbtn-acpi-support
 /etc/acpi/custom_hibernate.sh
 /etc/pm/sleep.d/00-wakeupsettings
+/home/plux/.scripts/dwmstatus

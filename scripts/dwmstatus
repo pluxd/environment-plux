@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# status script for dwm
+
+bat(){
+	echo -e "\x05$(acpi -b)"
+}
+
+#mem(){
+#mem="$(awk '/^-/ {print $3}' <(free -m))"
+#echo -e "\x04\x01 $mem"
+#}
+
+#cpu(){
+#    read cpu a b c previdle rest < /proc/stat
+#    prevtotal=$((a+b+c+previdle))
+#    sleep 0.5
+#    read cpu a b c idle rest < /proc/stat
+#    total=$((a+b+c+idle))
+#    cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal)))%"
+#    echo -e "\x05\x01 $cpu"
+#}
+
+#vol(){
+#        vol="$(ponymix get-volume)"
+#        if ponymix is-muted; then
+#echo -e "\x03\x01"
+#        else
+#echo -e "\x04\x01 $vol%"
+#        fi
+#}
+
+dte(){
+	echo -e "\x05$(date +"%a\x01.\x05%d.%b.%H:%M" | tr '[A-Z]' '[a-z]')"
+}
+
+# pipe to status bar
+xsetroot -name "$(bat)  $(dte)"
