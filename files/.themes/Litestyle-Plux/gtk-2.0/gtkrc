@@ -44,7 +44,7 @@ style "murrine-default"
 	GtkTreeView    ::expander-size        = 7
 	GtkTreeView    ::vertical-separator   = 0
 	GtkTreeView    ::odd_row_color        = "#ffffff"
-	GtkTreeView    ::even_row_color       = "#222222"
+	GtkTreeView    ::even_row_color       = "#ecedee"
 
 	GtkMenu        ::horizontal-padding   = 0
 	GtkMenu        ::vertical-padding     = 0
@@ -63,8 +63,8 @@ style "murrine-default"
   fg[SELECTED]     	 = "#222222"
   fg[INSENSITIVE]  	 = "#202020"
 
-  bg[NORMAL]       	 = "#222222" # Normal Background
-  bg[ACTIVE]       	 = "#222222"
+  bg[NORMAL]       	 = "#ecedee" # Normal Background
+  bg[ACTIVE]       	 = "#ecedee"
   bg[PRELIGHT]     	 = "#e0e0e0" # Expand prelight bg
   bg[SELECTED]     	 = "#68696b"
   bg[INSENSITIVE]  	 = "#eeeeee"
@@ -72,13 +72,13 @@ style "murrine-default"
   base[NORMAL]     	 = "#ffffff" # Background, most
   base[ACTIVE]     	 = "#68696b" # Menu active item in inactive window
   base[PRELIGHT]   	 = "#bbbbbb"
-  base[INSENSITIVE] = "#222222" # Inactive Entry bg
+  base[INSENSITIVE] = "#ecedee" # Inactive Entry bg
   base[SELECTED]     = "#68696b" # Menu active item in active window
 
   text[NORMAL]	 = "#606060" # Text in window, arrows
   text[INSENSITIVE]	 = "#c3c3c3" # Insensitive arrows
-  text[SELECTED]   	 = "#222222" # Active text in active window
-  text[ACTIVE]     	 = "#222222" # Active text in inactive window
+  text[SELECTED]   	 = "#ecedee" # Active text in active window
+  text[ACTIVE]     	 = "#ecedee" # Active text in inactive window
   text[PRELIGHT]   	 = "#bbbbbb" # Text on Mouseover
 
 	engine "murrine" 
@@ -87,7 +87,7 @@ style "murrine-default"
 		border_shades		    = { 1.15, 0.85 }
 		contrast            = 0.7   # 0.8 for less contrast, more than 1.0 for more contrast on borders
 		colorize_scrollbar  = TRUE  # FALSE = disabled, TRUE = enabled
-		focus_color         = shade (0.7, "#222222")
+		focus_color         = shade (0.7, "#ecedee")
 		glazestyle          = 0     # 0 = flat, 1 = curved, 2 = concave, 3 = top-curved, 4 = beryl
 		glow_shade          = 1.0  # sets glow amount for buttons or widgets
 		glowstyle           = 0    # 0 = top, 1 = bottom, 2 = top and bottom, 3 = center (vertical), 4 = center (horizontal) 
@@ -136,8 +136,8 @@ style "murrine-button" = "murrine-wider"
 
 style "murrine-notebook" = "murrine-wide"
 {
-	bg[NORMAL] = "#222222"
-	bg[ACTIVE] = shade (0.90, "#222222")
+	bg[NORMAL] = "#ecedee"
+	bg[ACTIVE] = shade (0.90, "#ecedee")
 	engine "clearlooks" 
 	{
 		radius	= 0.0
@@ -202,7 +202,7 @@ style "murrine-calendar"
 	xthickness	= 0
 	xthickness	= 0
 
-	base[ACTIVE]	= "#222222"
+	base[ACTIVE]	= "#ecedee"
 	text[ACTIVE]	= "#606060"
 
 	engine "murrine"
@@ -226,7 +226,7 @@ style "murrine-progressbar"
 	xthickness = 0
 	ythickness = 0
 
-	fg[PRELIGHT]	= "#222222"
+	fg[PRELIGHT]	= "#ecedee"
 	bg[ACTIVE]	= "#cccdce"
 	bg[SELECTED]	= "#68696b"
 
@@ -308,8 +308,8 @@ style "metacity-frame"
 
 style "murrine-radiocheck"
 {
-	text[NORMAL]   = "#222222"
-	text[PRELIGHT] = "#222222"
+	text[NORMAL]   = "#ecedee"
+	text[PRELIGHT] = "#ecedee"
 	bg[SELECTED] = "#bbbbbb" # HACK: override button selection colour
 
 	engine "murrine"
@@ -433,18 +433,18 @@ style "murrine-combobox-text-color-workaround"
 	text[NORMAL]      = "#606060"
 	text[PRELIGHT]    = "#606060"
 	text[ACTIVE]      = "#606060"
-	text[SELECTED]    = "#222222"
-	text[INSENSITIVE] = "#222222"
+	text[SELECTED]    = "#ecedee"
+	text[INSENSITIVE] = "#ecedee"
 }
 widget_class "*.<GtkComboBox>.<GtkCellView>"		style "murrine-combobox-text-color-workaround"
 
 style "murrine-menuitem-text-is-fg-color-workaround"
 {
-	text[NORMAL] = "#222222"
-	text[PRELIGHT] = "#222222"
-	text[ACTIVE] = "#222222"
-	text[SELECTED] = "#222222"
-	text[INSENSITIVE] = "#222222"
+	text[NORMAL] = "#ecedee"
+	text[PRELIGHT] = "#ecedee"
+	text[ACTIVE] = "#ecedee"
+	text[SELECTED] = "#ecedee"
+	text[INSENSITIVE] = "#ecedee"
 }
 
 widget "*.gtk-combobox-popup-menu.*"   			style "murrine-menuitem-text-is-fg-color-workaround"
@@ -456,9 +456,9 @@ style "murrine-fg-is-text-color-workaround"
 {
 	fg[NORMAL]      = "#606060"
 	fg[PRELIGHT]    = "#606060"
-	fg[ACTIVE]      = "#222222"
-	fg[SELECTED]    = "#222222"
-	fg[INSENSITIVE] = "#222222"
+	fg[ACTIVE]      = "#ecedee"
+	fg[SELECTED]    = "#ecedee"
+	fg[INSENSITIVE] = "#ecedee"
 }
 
 widget_class "*<GtkListItem>*" 				style "murrine-fg-is-text-color-workaround"
