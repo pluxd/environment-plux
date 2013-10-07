@@ -11,8 +11,8 @@ while true; do
 	sleep 20s
 done &
 
-/home/plux/Dropbox/Repositories/dwm-6.0-plux/dwm 2> ~/.dwm.log
-#while true; do
-#    # error logging
-#    dwm 2> ~/.dwm.log
-#done
+#/home/plux/Dropbox/Repositories/dwm-6.0-plux/dwm 2> ~/.dwm.log
+while true; do
+    # error logging
+    dwm 2> ~/.dwm.log
+done
