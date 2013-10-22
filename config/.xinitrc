@@ -1,6 +1,6 @@
 #!/bin/sh
 
-setxkbmap -layout us,ru -variant -option grp:alt_shift_toggle
+setxkbmap -layout us,ru -variant -option grp:caps_toggle
 feh --bg-fill /home/plux/Dropbox/Repositories/environment-plux/files/wallpapers/warbot.jpg
 
 #conky | while read LINE; do xsetroot -name "$LINE"; done & 
