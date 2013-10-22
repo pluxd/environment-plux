@@ -1,0 +1,2 @@
+(defvar custom-files-path "<put path to custom files here>")
+(load (concat custom-files-path "emacsconfig.el"))

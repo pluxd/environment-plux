@@ -63,7 +63,7 @@ if [ $? -ne 0 ]; then
 	die "cannot add route to workstation"
 fi
 
-xfreerdp -u $USERNAME -p $PWD -g ${WIDTH}x$HEIGHT -T "$TITLE" --ignore-certificate --gdi sw --no-bmp-cache $WORKSTATION_IP
+xfreerdp -u $USERNAME -p $PWD -g ${WIDTH}x$HEIGHT -T "$TITLE" --ignore-certificate --gdi sw -f $WORKSTATION_IP
 
 if [ $? -ne 0 ]; then
 	die "cannot run freerdp app"
