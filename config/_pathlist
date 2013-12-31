@@ -1,4 +1,5 @@
 /etc/X11/xorg.conf
+/etc/X11/Xsession.d/98x11-syndaemon
 /home/plux/.xinitrc
 /home/plux/.Xdefaults
 /home/plux/.asoundrc

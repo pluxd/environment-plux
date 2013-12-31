@@ -1,0 +1,7 @@
+# this file is sourced by Xsession(5), not executed.
+
+# load settings from ~/.qsynaptics
+/usr/bin/qsynaptics -r
+
+# start synaptics daemon to enable proper communication with touchpad
+/usr/bin/syndaemon -d -i 1
