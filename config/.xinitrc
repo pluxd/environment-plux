@@ -2,8 +2,7 @@
 
 setxkbmap -layout us,ru -variant -option grp:caps_toggle
 feh --bg-fill /home/plux/Dropbox/Repositories/environment-plux/files/wallpapers/warbot.jpg
-
-#conky | while read LINE; do xsetroot -name "$LINE"; done & 
+/usr/bin/syndaemon -d -k -i 1
 
 # set statusbar
 while true; do
