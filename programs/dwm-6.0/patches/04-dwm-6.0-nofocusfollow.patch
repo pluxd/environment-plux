@@ -1,0 +1,13 @@
+diff --git a/dwm.c b/dwm.c
+index 3d7359d..12672bf 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -272,7 +272,7 @@ static void (*handler[LASTEvent]) (XEvent *) = {
+ 	[ConfigureRequest] = configurerequest,
+ 	[ConfigureNotify] = configurenotify,
+ 	[DestroyNotify] = destroynotify,
+-	[EnterNotify] = enternotify,
++//	[EnterNotify] = enternotify,
+ 	[Expose] = expose,
+ 	[FocusIn] = focusin,
+ 	[KeyPress] = keypress,
