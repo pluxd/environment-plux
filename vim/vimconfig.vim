@@ -61,14 +61,6 @@ if &term == "screen-256color"
 	set t_Co=256
 endif
 
-" cursor color
-if &term =~ "xterm\\|rxvt"
-	let &t_SI = "\033]12;orange\007"
-	let &t_EI = "\033]12;gray\007"
-	silent !echo -ne "\033]12;gray\007"
-	autocmd VimLeave * silent !echo -ne "\033]12;gray\007"
-endif
-
 " syntax highlighting
 syntax on
 
