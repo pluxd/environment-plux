@@ -40,16 +40,12 @@ bat(){
 
 	case "$BAT_STATE" in
 		Discharging)
-			LOW_BAT_SOUND_FILE="/home/plux/Dropbox/Repositories/environment-plux/files/sounds/lowbatteryalert.wav"
 			if [ $BAT_PCT -ge 40 ]; then
 				echo -e " \x05\xE2\x88\x85\x01.$DOT_STR\x05\x06$BAT_PCT%\x01.\x05$BAT_HOUR:$BAT_MINUTE "
 			elif [ $BAT_PCT -ge 10 ]; then
 				echo -e " \x05\xE2\x88\x85\x01.$DOT_STR\x05\x03$BAT_PCT%\x01.\x05$BAT_HOUR:$BAT_MINUTE "
 			else
 				echo -e "\x04 \xE2\x88\x85.$DOT_STR$BAT_PCT%.$BAT_HOUR:$BAT_MINUTE \x01"
-				if [ -f $LOW_BAT_SOUND_FILE ]; then
-					aplay -q $LOW_BAT_SOUND_FILE
-				fi
 			fi
 			;;
 		Charging)

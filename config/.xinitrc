@@ -12,6 +12,11 @@ while true; do
 done &
 
 while true; do
+	/home/plux/.scripts/batterymanager
+	sleep 30s
+done &
+
+while true; do
     # error logging
     dwm 2> ~/.dwm.log
 done

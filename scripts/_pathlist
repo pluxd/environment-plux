@@ -10,3 +10,4 @@
 /etc/pm/sleep.d/00-wakeupsettings
 /home/plux/.scripts/dwmstatus
 /home/plux/.bashrc_backup
+/home/plux/.scripts/batterymanager

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+LOW_BAT_SOUND_FILE="/home/plux/Dropbox/Repositories/environment-plux/files/sounds/lowbatteryalert.wav"
+BAT_INFO=$(acpi -b)
+
+BAT_STATE=$(echo $BAT_INFO | awk '{print $3}' | sed 's/\,//')
+BAT_PCT=$(echo $BAT_INFO | awk '{print $4}' | sed 's/\(\%\|\,\)//g')
+
+case "$BAT_STATE" in
+	Discharging)
+		if [ $BAT_PCT -ge 10 ]; then
+			exit 0
+		elif [ $BAT_PCT -ge 4 ]; then
+			aplay -q $LOW_BAT_SOUND_FILE
+		else 
+			aplay -q $LOW_BAT_SOUND_FILE
+			aplay -q $LOW_BAT_SOUND_FILE
+		fi
+
+		if [ $BAT_PCT -le 1 ]; then
+			sudo pm-hibernate
+		fi
+		;;
+	*)
+		;;
+esac
