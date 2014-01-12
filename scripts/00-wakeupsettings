@@ -7,7 +7,7 @@ case $1 in
 		su $USERNAME -c "/usr/local/bin/slock" &
 	;;
 	thaw|resume)
-		echo 5 > /sys/class/backlight/acpi_video0/brightness
+		#echo 5 > /sys/class/backlight/acpi_video0/brightness
 	;;
  	*) exit $NA
 	;;
