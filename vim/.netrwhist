@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/plux/.vimperator'
 let g:netrw_dirhist_2='/home/plux/Dropbox/Repositories'
 let g:netrw_dirhist_3='/home/plux/dwm-test/oldstcol_backup'
+let g:netrw_dirhist_4='/home/plux/Dropbox/Repositories/environment-plux/vim/bundle/nerdtree/doc'
