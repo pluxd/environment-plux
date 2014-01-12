@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# it's planned to use as cron task
+# * * * * * batterymanager;sleep 30s;batterymanager
 
 LOW_BAT_SOUND_FILE="/home/plux/Dropbox/Repositories/environment-plux/files/sounds/lowbatteryalert.wav"
 BAT_INFO=$(acpi -b)
