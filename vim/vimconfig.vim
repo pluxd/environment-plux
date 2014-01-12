@@ -44,9 +44,9 @@ endif
 
 syntax on " syntax highlighting
 
-let mapleader=',' " change default mapleader
-
 hi User1 ctermbg=red ctermfg=white guibg=red guifg=white
+
+let mapleader=',' " change default mapleader
 
 set t_Co=256 " 256 colors support
 set cursorline " highlight the cursor line
