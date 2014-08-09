@@ -5,3 +5,4 @@ programs/st-0.4.1/build
 programs/slock-1.1/build
 scripts/static/rdp/*.swp
 scripts/static/rdp/rdpparams
+vim/.netrwhist
