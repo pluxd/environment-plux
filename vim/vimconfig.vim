@@ -18,6 +18,9 @@ if has("gui_win32")
 
 	set guifont=Terminus:h12:cDEFAULT " use cool terminus font
 	set showtabline=2 " always show tab panel
+
+	cnoreabbrev fx exe '% !'.expand(g:VimFilesDir).'/externaltools/xmllint-1.0.exe % --format'
+
 elseif has("gui_gtk2")
 	colorscheme xoria256_plux
 
@@ -25,7 +28,6 @@ elseif has("gui_gtk2")
 	set guifont=Terminus\ 9 " use cool terminus font
 else
 endif
-
 
 if has("gui_running")
 	"au GUIEnter * simalt ~x " full screen
@@ -76,8 +78,6 @@ set noeb vb t_vb= " no bell, no visualbell
 set mousehide " hide the mouse pointer while typing
 set clipboard+=unnamed " Add the unnamed register to the clipboard
 
-autocmd BufEnter * silent! lcd %:p:h " default dir changed to current file parent
-
 cnoreabbrev vc exe 'edit '.expand(g:VimFilesDir).'/vimconfig.vim'
 
 " NERDTree
@@ -90,6 +90,8 @@ let NERDTreeMinimalUI=1 " disables display of the 'Bookmarks' label and 'Press ?
 let NERDTreeDirArrows=0 " old school view (without dir arrows) 
 
 " ARCHIVE
+"
+"autocmd BufEnter * silent! lcd %:p:h " default dir changed to current file parent
 "
 "" C IDE settings
 "

@@ -43,6 +43,9 @@ refuse-mschap \
 nobsdcomp \
 nodeflate \
 unit 0 \
+persist \
+maxfail 20 \
+holdoff 5 \
 updetach 2>&1
 
 if [ $? -ne 0 ]; then
