@@ -80,6 +80,10 @@ set clipboard+=unnamed " Add the unnamed register to the clipboard
 
 cnoreabbrev vc exe 'edit '.expand(g:VimFilesDir).'/vimconfig.vim'
 
+" XML folding
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+
 " NERDTree
 
 nmap <F2> :NERDTreeToggle<CR>
