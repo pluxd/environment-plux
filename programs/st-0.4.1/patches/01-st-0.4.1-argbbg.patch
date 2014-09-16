@@ -1,10 +1,10 @@
 diff --git a/config.def.h b/config.def.h
-index 65dee5b..2be14f8 100644
+index 31b9410..2fd2e6c 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -25,6 +25,8 @@ static char termname[] = "st-256color";
  
- static unsigned int tabspaces = 8;
+ static unsigned int tabspaces = 4;
  
 +/* background opacity */
 +static const int alpha = 0xdd;

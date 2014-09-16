@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index d1c20bd..65dee5b 100644
+index d1c20bd..31b9410 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,7 +5,7 @@
@@ -11,7 +11,14 @@ index d1c20bd..65dee5b 100644
  static int borderpx = 2;
  static char shell[] = "/bin/sh";
  
-@@ -29,24 +29,24 @@ static unsigned int tabspaces = 8;
+@@ -23,30 +23,30 @@ static unsigned int actionfps = 30;
+ /* TERM value */
+ static char termname[] = "st-256color";
+ 
+-static unsigned int tabspaces = 8;
++static unsigned int tabspaces = 4;
+ 
+ 
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
  	/* 8 normal colors */
