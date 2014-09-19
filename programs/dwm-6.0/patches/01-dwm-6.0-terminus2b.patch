@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 4cc8eb0..a0551eb 100644
+index 67ed1f3..1524cd2 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -3,7 +3,7 @@
@@ -15,12 +15,12 @@ index 4cc8eb0..a0551eb 100644
  static const Bool viewontag         = True;     /* Switch view on tag switch */
  
  /* tagging */
--static const char *tags[] = { "trm", "web", "ed", "rdp", "a", "b", "c", "d", "e" };
-+static const char *tags[] = { "trm", "web", "ed", "rdp", "\u03b1", "\u03b2", "\u03b3", "\u03be", "\u03c9" };
+-static const char *tags[] = { "trm", "web", "rdp", "a", "b", "c", "d", "e", "f" };
++static const char *tags[] = { "trm", "web", "rdp", "\u03b1", "\u03b2", "\u03b3", "\u03bb", "\u03bc", "\u03c9" };
  
  static const Rule rules[] = {
  	/* class			instance    	title	tags mask	isfloating	monitor */
-@@ -35,7 +35,7 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
+@@ -33,7 +33,7 @@ static const Bool resizehints = False; /* True means respect size hints in tiled
  
  static const Layout layouts[] = {
  	/* symbol     arrange function */

@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index a0551eb..2f5ef41 100644
+index 1524cd2..366203b 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -3,13 +3,17 @@
@@ -26,7 +26,7 @@ index a0551eb..2f5ef41 100644
  static const unsigned int borderpx  = 0;        /* border pixel of windows */
  static const unsigned int snap      = 32;       /* snap pixel */
  static const Bool showbar           = True;     /* False means no bar */
-@@ -52,7 +56,7 @@ static const Layout layouts[] = {
+@@ -50,7 +54,7 @@ static const Layout layouts[] = {
  #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
  
  /* commands */
@@ -34,7 +34,7 @@ index a0551eb..2f5ef41 100644
 +static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", colors[0][ColBG], "-nf", colors[0][ColFG],"-sb", colors[1][ColBG], "-sf", colors[1][ColFG], NULL };
  static const char *termcmd[]  = { "st", NULL };
  static const char *browsercmd[] = { "firefox", NULL };
- static const char *vimcmd[] = { "gvim", NULL };
+ static const char *volraisecmd[] = { "amixer", "-c", "1", "set", "Master", "1+", "unmute",  NULL };
 diff --git a/dwm.c b/dwm.c
 index c1fbb93..bd82d72 100644
 --- a/dwm.c
