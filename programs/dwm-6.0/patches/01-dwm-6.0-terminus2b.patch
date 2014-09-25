@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 67ed1f3..1524cd2 100644
+index bc4ba0b..5cdada9 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -3,7 +3,7 @@

@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 77ff358..67ed1f3 100644
+index 77ff358..bc4ba0b 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -1,41 +1,45 @@
@@ -39,7 +39,7 @@ index 77ff358..67ed1f3 100644
 +	/* class			instance    	title	tags mask	isfloating	monitor */
 +	{ "st-256color",    "st-256color",  NULL,   1,          False,      -1 },
 +	{ "Firefox",   		NULL,  			NULL, 	1 << 1,     False,      -1 },
-+	{ "xfreerdp",  		"xfreerdp",		NULL,	1 << 3,     False,      -1 },
++	{ "xfreerdp",  		"xfreerdp",		NULL,	1 << 2,     False,      -1 },
  };
  
  /* layout(s) */
